@@ -1,0 +1,159 @@
+
+[
+  {
+    "question": "JavaScript 中 var、let、const 有什么区别？",
+    "answer": "1. var：函数作用域，存在变量提升，可以重复声明，默认undefined\n   全局声明会挂载到window\n2. let：块级作用域(大括号{})，没有变量提升，存在暂时性死区，不能重复声明\n3. const：块级作用域，必须初始化，不能修改绑定（但如果是对象可以修改属性）\n\n推荐：默认用const，需要修改时用let，避免用var。",
+    "difficulty": "easy",
+    "tags": ["变量声明", "作用域"]
+  },
+  {
+    "question": "JavaScript 中什么是作用域链？",
+    "answer": "作用域是指变量和函数的可访问范围。\n当访问一个变量时，JavaScript会从当前作用域开始向上查找，一直找到全局作用域，这个查找路径就是作用域链。\n\n作用域链保证了变量的有序访问，内层可以访问外层，外层不能访问内层。",
+    "difficulty": "medium",
+    "tags": ["作用域", "作用域链"]
+  },
+  {
+    "question": "JavaScript 中什么是闭包(closure)？举例说明用途",
+    "answer": "闭包就是函数能够访问其外部作用域变量，即使这个函数在定义它的作用域外执行。\n\n本质：函数的[[Scopes]]属性保存了外部作用域的引用，所以函数执行时还能访问。\n\n常见用途：\n1. 封装私有变量\n2. 模块化开发\n3. 柯里化函数\n4. 定时器/事件监听保存状态\n\n常见坑：循环中绑定事件监听捕获同一个变量。",
+    "difficulty": "hard",
+    "tags": ["闭包", "作用域"]
+  },
+  {
+    "question": "JavaScript 中 == 和 === 有什么区别？",
+    "answer": "- ==：抽象相等，会进行类型转换再比较\n- ===：严格相等，不进行类型转换，类型不同直接false\n\n推荐：总是用 ===，避免隐式类型转换带来的怪异结果。\n\n几个坑：\n- 0 == '' → true\n- false == '0' → true\n- null == undefined → true",
+    "difficulty": "easy",
+    "tags": ["比较", "类型转换"]
+  },
+  {
+    "question": "JavaScript 中 typeof null 结果是什么？为什么？",
+    "answer": "typeof null 结果是 'object'。\n这是JavaScript最初设计的bug：\n最初JavaScript值表示为标签+值，null的标签是0，而对象的标签也是0，所以typeof误判为object。\n\n现在这个bug一直保留着兼容性，无法修复。\n判断null用 value === null。",
+    "difficulty": "easy",
+    "tags": ["类型", "bug"]
+  },
+  {
+    "question": "JavaScript 中什么是原型继承？__proto__ 和 prototype 区别？",
+    "answer": "JavaScript每个对象都有一个 __proto__ 属性，指向它的构造函数的prototype对象，层层向上形成原型链。\n当访问对象属性时，如果对象没有，就去原型链找。\n\n区别：\n- __proto__ 是每个实例都有的属性，指向原型对象\n- prototype 是构造函数才有的属性，是实例的原型\n\n关系：instance.__proto__ === Constructor.prototype",
+    "difficulty": "medium",
+    "tags": ["原型", "继承"]
+  },
+  {
+    "question": "JavaScript 中new 关键字做了什么？",
+    "answer": "new 构造函数() 执行四步：\n1. 创建一个全新的空对象\n2. 将这个对象的 __proto__ 指向构造函数的prototype\n3. 将构造函数的this绑定到这个新对象\n4. 如果构造函数没有返回对象，就返回这个新对象；如果构造函数返回了对象就返回那个对象\n",
+    "difficulty": "medium",
+    "tags": ["new", "面向对象"]
+  },
+  {
+    "question": "JavaScript 中this的指向是什么？如何确定this的值？",
+    "answer": "this 指向取决于函数调用方式，不是定义位置：\n1. 直接调用 func()：this 是 window（严格模式下是undefined）\n2. 对象方法调用 obj.method()：this 是 obj\n3. 构造函数 new Func()：this 是新创建的实例\n4. call/apply/bind：this 就是指定的对象\n5. 箭头函数：没有自己的this，继承外层作用域的this\n\n记住：谁调用this就是谁（箭头函数除外）。",
+    "difficulty": "medium",
+    "tags": ["this", "执行上下文"]
+  },
+  {
+    "question": "JavaScript 中箭头函数和普通函数有什么区别？",
+    "answer": "1. 箭头函数没有自己的this，继承外层作用域的this\n2. 箭头函数不能作为构造函数，不能用new\n3. 箭头函数没有arguments对象，可以用...rest代替\n4. 箭头函数不能用作生成器，不能有yield\n5. 语法更简洁，隐式返回\n\n适合：回调函数、短函数、不改变this绑定的场景\n不适合：对象方法、构造函数、需要动态this的时候",
+    "difficulty": "medium",
+    "tags": ["箭头函数", "ES6"]
+  },
+  {
+    "question": "JavaScript 中什么是事件冒泡？什么是事件捕获？",
+    "answer": "事件流：\n1. 捕获阶段：从window向下传播到目标元素\n2. 目标阶段：到达目标\n3. 冒泡阶段：从目标向上冒泡回window\n\n事件冒泡：事件触发后，会从触发元素向上冒泡给父元素\n事件捕获：从父元素向下到目标元素\n\naddEventListener 第三个参数true是捕获，false（默认）是冒泡。\n\n常用冒泡，很少用捕获。stopPropagation() 可以阻止传播。",
+    "difficulty": "medium",
+    "tags": ["事件", "DOM"]
+  },
+  {
+    "question": "JavaScript 中如何实现防抖(debounce)？用途是什么？",
+    "answer": "防抖：多次触发在一段时间内只执行最后一次。\n原理：用定时器延迟执行，如果再次触发就清除定时器重新计时。\n\n用途：\n- search输入框联想搜索，用户输入完再请求\n- window resize 调整完大小再执行\n- 按钮频繁点击只响应最后一次\n\n```javascript\nfunction debounce(func, delay) {\n  let timer = null\n  return function(...args) {\n    if (timer) clearTimeout(timer)\n    timer = setTimeout(() => func.apply(this, args), delay)\n  }\n}\n```",
+    "difficulty": "hard",
+    "tags": ["防抖", "性能优化"]
+  },
+  {
+    "question": "JavaScript 中什么是节流(throttle)？和防抖区别？",
+    "answer": "节流：保证一段时间内只执行一次，不管触发多少次。\n区别：\n- 防抖：最后触发后等n秒执行一次，适合只执行最后一次\n- 节流：每隔n秒强制执行一次，适合稀释执行频率\n\n用途：\n- scroll滚动事件，每隔一段时间更新位置\n- mousemove事件\n- 抢购按钮防重复点击\n\n```javascript\nfunction throttle(func, delay) {\n  let last = 0\n  return function(...args) {\n    const now = Date.now()\n    if (now - last > delay) {\n      func.apply(this, args)\n      last = now\n    }\n  }\n}\n```",
+    "difficulty": "hard",
+    "tags": ["节流", "性能优化"]
+  },
+  {
+    "question": "JavaScript 中异步编程有哪些方案？",
+    "answer": "发展历程：\n1. 回调函数：问题是回调地狱，嵌套太深难以维护\n2. 事件发布订阅\n3. Promise：解决回调地狱，链式调用，统一错误处理\n4. async/await：基于Promise的语法糖，写法像同步，最优雅\n\nasync/await 是目前推荐的方式。",
+    "difficulty": "medium",
+    "tags": ["异步", "Promise", "async/await"]
+  },
+  {
+    "question": "JavaScript 中 Promise 是什么？有几种状态？",
+    "answer": "Promise 是异步编程的一种解决方案，比回调更优雅。\n三种状态：\n- pending：初始状态，等待中\n- fulfilled：成功完成\n- rejected：失败\n\n状态只能从pending变成fulfilled或者rejected，一旦改变就不能再变。\n\nthen方法接收成功和失败回调，返回新的Promise，可以链式调用。",
+    "difficulty": "medium",
+    "tags": ["Promise", "异步"]
+  },
+  {
+    "question": "JavaScript 中 async/await 原理是什么？优点是什么？",
+    "answer": "async/await 是Generator + Promise + 自动执行器的语法糖。\nasync 函数返回Promise，await 只能用在async函数里，await等待一个Promise。\n\n优点：\n- 代码看起来像同步，非常清晰可读\n- 错误处理可以用try/catch，和同步一样\n- 调试方便\n- 结构清晰，比Promise链式调用更易读",
+    "difficulty": "hard",
+    "tags": ["async/await", "异步"]
+  },
+  {
+    "question": "JavaScript 中宏任务和微任务区别？执行顺序？",
+    "answer": "都是异步任务调度：\n- 宏任务：script整体代码、setTimeout、setInterval、I/O、DOM事件、requestAnimationFrame\n- 微任务：Promise.then/catch/finally、process.nextTick(Node.js)、MutationObserver、queueMicrotask\n\n执行顺序：\n1. 执行当前宏任务\n2. 执行完后，执行所有微任务队列\n3. 然后执行下一个宏任务\n4. 继续循环\n\n所以：当前宏任务执行完，立刻处理所有微任务，再渲染再执行下一个宏任务。",
+    "difficulty": "hard",
+    "tags": ["事件循环", "宏任务", "微任务"]
+  },
+  {
+    "question": "JavaScript 中什么是事件循环(Event Loop)？",
+    "answer": "JavaScript是单线程的，事件循环让JavaScript能处理异步任务不阻塞主线程。\n原理：\n- 调用栈执行同步任务，同步执行完才处理异步\n- 异步任务有结果后，把回调放到对应队列（宏任务/微任务）\n- 调用栈空了，先处理所有微任务\n- 微任务处理完了，再取下一个宏任务执行\n\n一直循环这个过程，所以叫事件循环。\n浏览器和Node.js的事件循环略有不同。",
+    "difficulty": "hard",
+    "tags": ["事件循环", "异步"]
+  },
+  {
+    "question": "JavaScript 中如何实现继承？ES6 class 继承和ES5原型继承区别？",
+    "answer": "ES5 原型继承：\nChild.prototype = new Parent() 或者 Object.create(Parent.prototype)\n\nES6 class 继承：\nclass Child extends Parent { ... }\n\n区别：\n1. class 语法更清晰，更像传统面向对象\n2. extends 继承，super 调用父类构造函数\n3. ES5 是先创建子类实例，再调用父类构造函数\n   ES6 是先创建父类实例，再用子类构造函数修改\n\nclass 本质还是原型语法，只是语法糖。",
+    "difficulty": "medium",
+    "tags": ["继承", "class"]
+  },
+  {
+    "question": "JavaScript 中什么是柯里化(currying)？",
+    "answer": "柯里化是把接受多个参数的函数转换成接受单个参数的函数，返回接受余下参数新函数的技术。\n\n比如：add(a)(b)(c)\n\n用途：\n- 参数复用\n- 延迟执行\n- 创建偏函数\n\n例子：\nfunction curry(fn) {\n  return function curried(...args) {\n    if (args.length >= fn.length) {\n      return fn.apply(this, args)\n    } else {\n      return (...args2) => curried(...args.concat(args2))\n    }\n  }\n}",
+    "difficulty": "hard",
+    "tags": ["柯里化", "函数式编程"]
+  },
+  {
+    "question": "JavaScript 中什么是深拷贝？如何实现深拷贝？",
+    "answer": "深拷贝就是拷贝对象的所有嵌套结构，完全复制一份，修改不影响原对象。\n\n简单实现：\n1. JSON.parse(JSON.stringify(obj)) - 但不能处理函数、undefined、Symbol、循环引用\n2. 递归拷贝：遇到对象就递归，判断类型，区分数组和对象\n3. 用Map记录已经拷贝过的对象解决循环引用\n\n完整实现需要处理多种类型：Date、RegExp、Function、循环引用等。",
+    "difficulty": "hard",
+    "tags": ["深拷贝", "拷贝"]
+  },
+  {
+    "question": "JavaScript 中 null 和 undefined 区别？",
+    "answer": "- undefined：变量声明了但没赋值，函数参数没传，对象没有这个属性\n- null：表示空对象指针，故意赋值为空\n\ntypeof undefined → 'undefined'\ntypeof null → 'object'\n\nnull == undefined → true\nnull === undefined → false",
+    "difficulty": "easy",
+    "tags": ["基础", "类型"]
+  },
+  {
+    "question": "JavaScript 中如何解决跨域问题？",
+    "answer": "跨域是因为浏览器同源策略限制，不同源（协议/域名/端口不同）不能交互。\n\n解决方案：\n1. CORS：后端设置 Access-Control-Allow-Origin，推荐，现代浏览器支持\n2. JSONP：利用script标签没有跨域限制，只能GET，不安全\n3. 反向代理：nginx 代理转发，前后端同源\n4. postMessage：跨窗口通信",
+    "difficulty": "medium",
+    "tags": ["跨域", "网络"]
+  },
+  {
+    "question": "JavaScript 中什么是同源策略？为什么需要？",
+    "answer": "同源策略是浏览器的安全策略，限制不同源的文档和脚本交互。\n同源：协议、域名、端口都相同。\n\n目的：保护用户信息安全，防止恶意网站窃取数据。\n如果没有同源策略，任意网站都可以读取你其他网站的内容（比如邮箱、银行），非常危险。",
+    "difficulty": "medium",
+    "tags": ["同源策略", "安全"]
+  },
+  {
+    "question": "JavaScript 中模块化有哪些方案？CommonJS vs ES Modules区别？",
+    "answer": "发展：\n- 最初没有模块化，IIFE 模拟\n- CommonJS：Node.js使用，require()同步加载\n- AMD：require.js，异步加载\n- ES Modules（ESM）：语言层面的模块化标准\n\n区别：\n1. CommonJS 同步加载，ESM 静态分析可以Tree Shaking\n2. CommonJS 导出的是值拷贝，ESM 是引用\n3. CommonJS 可以运行时加载，ESM 编译时加载\n4. 语法不同：require/module.exports vs import/export\n\n现在推荐 ES Modules。",
+    "difficulty": "hard",
+    "tags": ["模块化", "CommonJS", "ESM"]
+  },
+  {
+    "question": "JavaScript 中什么是垃圾回收？常见算法？",
+    "answer": "垃圾回收是自动回收不再被引用的内存，不用开发者手动管理。\n\n常见算法：\n1. 标记清除(Mark-Sweep)：从根开始标记可达对象，清除不可达\n2. 引用计数：记录引用次数，次数为0就回收，循环引用处理不了\n现代浏览器用标记清除。\n\nV8 分代回收：\n- 新生代：存活时间短，复制算法\n- 老生代：存活时间长，标记清除+标记整理",
+    "difficulty": "hard",
+    "tags": ["垃圾回收", "内存管理"]
+  },
+  {
+    "question": "JavaScript 中什么是提升(hoisting)？var 和 function 提升区别？",
+    "answer": "提升是JavaScript编译阶段把变量和函数声明提升到当前作用域顶部。\n\n- var 变量提升：声明提升，赋值不提升，值是undefined\n- function 函数声明提升：整个函数体都提升，可以在声明前调用\n- let/const 也提升，但存在暂时性死区，不能在声明前访问",
+    "difficulty": "medium",
+    "tags": ["提升", "编译"]
+  }
+]

@@ -1,0 +1,154 @@
+[
+  {
+    "id": "csharp",
+    "name": "C#",
+    "group": "languages",
+    "description": "C# 编程语言基础知识",
+    "total": 30,
+    "progress": 0
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "group": "languages",
+    "description": "Python 编程语言基础知识",
+    "total": 32,
+    "progress": 0
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "group": "languages",
+    "description": "Java 编程语言基础知识",
+    "total": 28,
+    "progress": 0
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "group": "languages",
+    "description": "JavaScript 前端语言",
+    "total": 26,
+    "progress": 0
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "group": "languages",
+    "description": "TypeScript 类型系统",
+    "total": 18,
+    "progress": 0
+  },
+  {
+    "id": "html",
+    "name": "HTML",
+    "group": "languages",
+    "description": "HTML 标记语言",
+    "total": 15,
+    "progress": 0
+  },
+  {
+    "id": "css",
+    "name": "CSS",
+    "group": "languages",
+    "description": "CSS 样式表",
+    "total": 18,
+    "progress": 0
+  },
+  {
+    "id": "aspnetcore",
+    "name": "ASP.NET Core",
+    "group": "frameworks",
+    "description": "ASP.NET Core Web 开发框架",
+    "total": 25,
+    "progress": 0
+  },
+  {
+    "id": "springboot",
+    "name": "Spring Boot",
+    "group": "frameworks",
+    "description": "Spring Boot Java 开发框架",
+    "total": 24,
+    "progress": 0
+  },
+  {
+    "id": "vue",
+    "name": "Vue",
+    "group": "frameworks",
+    "description": "Vue 前端框架",
+    "total": 20,
+    "progress": 0
+  },
+  {
+    "id": "efcore",
+    "name": "EF Core",
+    "group": "frameworks",
+    "description": "Entity Framework Core ORM 框架",
+    "total": 18,
+    "progress": 0
+  },
+  {
+    "id": "mybatisplus",
+    "name": "MyBatis Plus",
+    "group": "frameworks",
+    "description": "MyBatis Plus 增强工具包",
+    "total": 12,
+    "progress": 0
+  },
+  {
+    "id": "winform",
+    "name": "WinForm",
+    "group": "frameworks",
+    "description": "Windows Forms 桌面开发",
+    "total": 15,
+    "progress": 0
+  },
+  {
+    "id": "wpf",
+    "name": "WPF",
+    "group": "frameworks",
+    "description": "Windows Presentation Foundation 开发",
+    "total": 20,
+    "progress": 0
+  },
+  {
+    "id": "mysql",
+    "name": "MySQL",
+    "group": "databases",
+    "description": "MySQL 关系型数据库",
+    "total": 22,
+    "progress": 0
+  },
+  {
+    "id": "sqlserver",
+    "name": "SQL Server",
+    "group": "databases",
+    "description": "SQL Server 数据库",
+    "total": 15,
+    "progress": 0
+  },
+  {
+    "id": "sqlite",
+    "name": "SQLite",
+    "group": "databases",
+    "description": "SQLite 嵌入式数据库",
+    "total": 10,
+    "progress": 0
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "group": "databases",
+    "description": "MongoDB 文档型数据库",
+    "total": 12,
+    "progress": 0
+  },
+  {
+    "id": "git",
+    "name": "Git",
+    "group": "other",
+    "description": "Git 版本控制",
+    "total": 15,
+    "progress": 0
+  }
+]
