@@ -1,0 +1,29 @@
+const e=[{question:"Vue 3 中 v-for 为什么要加 key？",answer:`key 的作用是给每个节点做唯一标识，帮助 Vue 的虚拟DOM算法进行diff算法，更准确地识别哪些节点需要更新，哪些可以复用。
+
+如果没有key，Vue会使用就地复用策略，可能导致状态错误或不必要的节点重新创建，影响性能或产生bug。`,difficulty:"easy",tags:["diff","虚拟DOM","基础"]},{question:"Vue 3 中 computed 和 watch 有什么区别？",answer:`computed：计算属性，基于依赖缓存，当依赖变化时才会重新计算，用于计算衍生出来的值，必须返回计算结果。
+
+watch：监听器，监听某个数据变化，执行副作用操作（异步、DOM操作、请求等），不需要返回值，可以设置immediate和deep选项。
+
+什么时候用：需要计算得到新值用computed，需要在变化后执行操作用watch。`,difficulty:"medium",tags:["API","响应式"]},{question:"Vue 3 响应式原理是什么？和Vue 2对比有什么改进？",answer:`Vue 3 使用 ES6 Proxy 代替 Object.defineProperty。
+
+改进：
+1. Proxy 可以直接监听整个对象，不需要遍历每个属性做defineProperty
+2. 可以监听数组的索引变化，Vue 2 不能直接监听
+3. 可以监听动态添加的属性，不需要$set
+4. 性能更好，初始化更快
+
+缺点：不支持IE11及以下`,difficulty:"hard",tags:["响应式","原理","对比"]},{question:"Vue 3 中 ref 和 reactive 的区别是什么？",answer:`1. ref 用来包装基本类型和对象，访问值需要 .value，reactive 只能包装对象类型
+2. reactive 不能重新赋值整个对象会丢失响应性，ref 可以
+3. ref 在template中使用会自动解包，不需要写 .value
+4. 推荐：基本类型用ref，复杂对象用reactive，或者全用ref`,difficulty:"medium",tags:["Composition API","响应式"]},{question:"Vue 路由中导航守卫有哪些？作用分别是什么？",answer:`全局守卫：beforeEach（进入路由前），afterEach（进入路由后）
+路由独享守卫：beforeEnter（在路由配置上）
+组件内守卫：beforeRouteEnter，beforeRouteUpdate，beforeRouteLeave
+
+主要用途：权限检查，是否需要登录，离开前保存草稿等`,difficulty:"medium",tags:["路由","导航守卫"]},{question:"Vue 中 keep-alive 的作用是什么？",answer:`keep-alive 是Vue内置组件，用于缓存不活动的组件实例，避免重复渲染，提升性能。
+
+主要属性：
+- include：只有匹配名称的组件会被缓存
+- exclude：不缓存哪些组件
+- max：最多缓存多少个组件
+
+生命周期：activated / deactivated`,difficulty:"easy",tags:["性能优化","缓存"]}];export{e as default};
